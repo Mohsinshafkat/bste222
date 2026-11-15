@@ -24,7 +24,7 @@ window.STUDENT_RECORDS = [
 { roll: "90470", year: "2025", name: "AAMIR SHEIKH", father: "MUHAMMAD ASLAM", reg: "BSTE/TEC/90470", course: "DAE (ELECTRICAL)", total: "3200", obt: "1915", per: "59.84%", grade: "C" },
 { roll: "90471", year: "2025", name: "SHAFQAT RAFIQ", father: "SHOUKAT ALI", reg: "BSTE/TEC/90471", course: "SOLAR ENERGY", total: "500", obt: "451", per: "90.20%", grade: "A+" },
 { roll: "90472", year: "2025", name: "KASHIF IQBAL", father: "MUHAMMAD ASLAM", reg: "BSTE/TEC/90472", course: "MOBILE PHONE REPAIRING", total: "500", obt: "378", per: "75.60%", grade: "A" },
-{ roll: "80472", year: "2016 - 2020", name: "JAMILA IRFAN", father: "MUHAMMAD IRFAN", reg: "BSTE/BSN/80472", course: "BS NURSING", total: "4000", obt: "3180", per: "79.5%", grade: "A" },  
+{ roll: "80472", year: "2020", session: "2016-2020", name: "JAMILA IRFAN", father: "MUHAMMAD IRFAN", reg: "BSTE/BSN/80472", course: "BS NURSING", total: "4000", obt: "3180", per: "79.5%", grade: "A" }, 
 { roll: "90473", year: "2025", name: "MUHAMMAD RAFIQ", father: "ABDUL RASHID", reg: "BSTE/TEC/90473", course: "DAE (COMPUTER ENGINEERING)", total: "3100", obt: "1293", per: "41.71%", grade: "D" },
 { roll: "90474", year: "2025", name: "IMRAN BUTT", father: "ABDUL MAJEED", reg: "BSTE/TEC/90474", course: "DAE (TELECOMMUNICATION TECHNOLOGY)", total: "3200", obt: "2856", per: "89.25%", grade: "A+" },
 { roll: "90475", year: "2025", name: "FAISAL ALI", father: "MUHAMMAD AKRAM", reg: "BSTE/TEC/90475", course: "DAE (AUTO DIESEL ENGINEERING)", total: "3200", obt: "2489", per: "77.78%", grade: "A" },
