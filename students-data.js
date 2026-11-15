@@ -1,15 +1,15 @@
 const students = [
   {
-    "studentName": "Mohsin Ali",
+    "studentName": "Mohsin Shafkat",
     "fatherName": "Shoukat Ali",
-    "regNo": "BSTE/DIT/2018/101152",
+    "regNo": "he",
     "rollNo": "101152",
-    "institute": "HiTech VTI Shikarpur",
-    "course": "Diploma of Information Technology",
-    "session": "2015-2018",
-    "grade": "A",
-    "totalMarks": "3000",
-    "obtainedMarks": "2540",
-    "percentage": "86.66%"
+    "institute": "hdj",
+    "course": "rjj",
+    "session": "dh",
+    "grade": "rhj",
+    "totalMarks": "266",
+    "obtainedMarks": "626",
+    "percentage": "heh"
   }
 ];
