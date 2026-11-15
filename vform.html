@@ -76,10 +76,6 @@ z-index: 20;
 button.btn-submit:hover {
 background-color: #2b642e;
 }
-button.btn-submit:disabled {
-background-color: #888888;
-cursor: not-allowed;
-}
 #pdf-wrapper {
 position: fixed;
 left: -9999px;
@@ -395,93 +391,51 @@ This is a web-based generated document and does not require any signature.
 </div>
 </div>
 
-<script src="students-data.js"></script>
 <script>
-document.getElementById('verificationForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
+document.getElementById('verificationForm').addEventListener('submit', function(e) {
+e.preventDefault();
 
-  const submitBtn = document.getElementById('downloadBtn');
-  const studentData = {
-    studentName: document.getElementById('studentName').value.trim(),
-    fatherName: document.getElementById('fatherName').value.trim(),
-    regNo: document.getElementById('regNo').value.trim(),
-    rollNo: document.getElementById('rollNo').value.trim(),
-    institute: document.getElementById('institute').value.trim(),
-    course: document.getElementById('course').value.trim(),
-    session: document.getElementById('session').value.trim(),
-    grade: document.getElementById('grade').value.trim(),
-    totalMarks: document.getElementById('totalMarks').value.trim(),
-    obtainedMarks: document.getElementById('obtainedMarks').value.trim(),
-    percentage: document.getElementById('percentage').value.trim()
-  };
+const studentName = document.getElementById('studentName').value;
+const fatherName = document.getElementById('fatherName').value;
+const regNo = document.getElementById('regNo').value;
+const rollNo = document.getElementById('rollNo').value;
+const institute = document.getElementById('institute').value;
+const course = document.getElementById('course').value;
+const session = document.getElementById('session').value;
+const grade = document.getElementById('grade').value;
+const totalMarks = document.getElementById('totalMarks').value;
+const obtainedMarks = document.getElementById('obtainedMarks').value;
+const percentage = document.getElementById('percentage').value;
 
-  // Check if roll number already exists in students-data.js
-  const existing = typeof students !== 'undefined' ? students.find(s => String(s.rollNo).trim() === studentData.rollNo) : null;
-  
-  let action = "add";
-  if (existing) {
-    const choice = confirm("Roll Number " + studentData.rollNo + " already exists!\n\nClick 'OK' to REPLACE the existing record.\nClick 'Cancel' to EDIT/CHANGE the Roll Number.");
-    if (choice) {
-      action = "replace";
-    } else {
-      document.getElementById('rollNo').focus();
-      return;
-    }
-  }
+document.getElementById('outStudentName').innerText = studentName;
+document.getElementById('outFatherName').innerText = fatherName;
+document.getElementById('outRegNo').innerText = regNo;
+document.getElementById('outRollNo').innerText = rollNo;
+document.getElementById('outInstitute').innerText = institute;
+document.getElementById('outCourse').innerText = course;
+document.getElementById('outTableRollNo').innerText = rollNo;
+document.getElementById('outTableCourse').innerText = course;
+document.getElementById('outTableSession').innerText = session;
+document.getElementById('outTableGrade').innerText = grade;
+document.getElementById('outTableTotalMarks').innerText = totalMarks;
+document.getElementById('outTableObtainedMarks').innerText = obtainedMarks;
+document.getElementById('outTablePercentage').innerText = percentage;
 
-  submitBtn.disabled = true;
-  submitBtn.innerText = "Saving & Syncing...";
+const element = document.getElementById('pdf-template');
+const opt = {
+margin: 0,
+filename: rollNo ? rollNo + '.pdf' : 'Verification_Document.pdf',
+image: { type: 'jpeg', quality: 0.98 },
+html2canvas: {
+scale: 2,
+useCORS: true,
+scrollY: 0,
+scrollX: 0
+},
+jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
+};
 
-  try {
-    const response = await fetch('https://updater.mohsinshafkat.workers.dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: action, studentData: studentData })
-    });
-
-    const result = await response.json();
-    
-    if (result.success) {
-      // Update PDF fields
-      document.getElementById('outStudentName').innerText = studentData.studentName;
-      document.getElementById('outFatherName').innerText = studentData.fatherName;
-      document.getElementById('outRegNo').innerText = studentData.regNo;
-      document.getElementById('outRollNo').innerText = studentData.rollNo;
-      document.getElementById('outInstitute').innerText = studentData.institute;
-      document.getElementById('outCourse').innerText = studentData.course;
-      document.getElementById('outTableRollNo').innerText = studentData.rollNo;
-      document.getElementById('outTableCourse').innerText = studentData.course;
-      document.getElementById('outTableSession').innerText = studentData.session;
-      document.getElementById('outTableGrade').innerText = studentData.grade;
-      document.getElementById('outTableTotalMarks').innerText = studentData.totalMarks;
-      document.getElementById('outTableObtainedMarks').innerText = studentData.obtainedMarks;
-      document.getElementById('outTablePercentage').innerText = studentData.percentage;
-
-      const element = document.getElementById('pdf-template');
-      const opt = {
-        margin: 0,
-        filename: studentData.rollNo ? studentData.rollNo + '.pdf' : 'Verification_Document.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: {
-          scale: 2,
-          useCORS: true,
-          scrollY: 0,
-          scrollX: 0
-        },
-        jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
-      };
-
-      await html2pdf().set(opt).from(element).save();
-      alert("Record successfully saved to GitHub & PDF downloaded!");
-    } else {
-      alert("Error: " + (result.message || result.error || "Failed to update record."));
-    }
-  } catch (err) {
-    alert("Connection Error: " + err.message);
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.innerText = "Submit & Download PDF";
-  }
+html2pdf().set(opt).from(element).save();
 });
 </script>
 
